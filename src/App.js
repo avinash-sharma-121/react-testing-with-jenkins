@@ -7,7 +7,7 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Avinash kumar sharma, testing with webhook with plugins
+          Avinash kumar sharma
         </p>
         <a
           className="App-link"
