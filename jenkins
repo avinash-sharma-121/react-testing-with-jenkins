@@ -13,7 +13,7 @@ pipeline {
         stage('docker image build'){
             steps{
                   script{
-                      docker_image_creation("avisharma82","react_test_app","v1")    
+                      docker_image_creation("avisharma82","react_test_app","v2")    
                   }
             }
         }
@@ -21,7 +21,7 @@ pipeline {
         stage('image push to dockerhub'){
             steps{
                   script{
-                      push_img_to_dockerHub("avisharma82","react_test_app","v1")
+                      push_img_to_dockerHub("avisharma82","react_test_app","v2")
                   }
                 }
         }
