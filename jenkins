@@ -21,7 +21,7 @@ pipeline {
         stage('image push to dockerhub'){
             steps{
                   script{
-                      push_img_to_dockerHub('react_test_app','dockerHubID','latest')
+                      push_img_to_dockerHub("avisharma82","react_test_app","v1")
                   }
                 }
         }
