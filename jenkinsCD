@@ -1,0 +1,22 @@
+pipeline {
+    agent any
+
+    parameters {
+        string(name: 'DOCKER_IMAGE', defaultValue: '', description: 'Docker image with tag')
+        string(name: 'APP_VERSION', defaultValue: '', description: 'Git commit SHA')
+    }
+
+    stages {
+        stage('Deploy to Minikube') {
+            steps {
+              //  sh """
+                  //sed 's|IMAGE_PLACEHOLDER|${params.DOCKER_IMAGE}|g' k8s/deployment.yaml | kubectl apply -f -
+                  //kubectl apply -f k8s/service.yaml
+            //    """
+            echo "Deploying image: ${params.DOCKER_IMAGE}"
+            echo "Version: ${params.APP_VERSION}"
+            sh 'kubectl get nodes'
+            }
+        }
+    }
+}

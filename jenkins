@@ -80,8 +80,10 @@ pipeline {
         success {
             build job: 'React_project_CD_pipeline',
                   parameters: [
-                      string(name: 'DOCKER_IMAGE', value: env.IMAGE_Full_name),
-                      string(name: 'APP_VERSION', value: env.GIT_SHA)
+                      //string(name: 'DOCKER_IMAGE', value: env.IMAGE_Full_name),
+                      //string(name: 'APP_VERSION', value: env.GIT_SHA)
+                      string(name: 'DOCKER_IMAGE', value: 'testing12345'),
+                      string(name: 'APP_VERSION', value: 'tagvalue12345')
                   ]
         }
     }
