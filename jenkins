@@ -45,7 +45,8 @@ pipeline {
                   }
                 }
         }
-        stage('code deploy'){
+        //comented for CD pipeline trigger
+       /* stage('code deploy'){
             steps{
                 script{
                 echo "code deploy with docker"
@@ -56,7 +57,7 @@ pipeline {
                 """
                 }
             }
-        }
+        } */
     }
 
     post{
