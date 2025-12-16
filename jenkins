@@ -13,7 +13,7 @@ pipeline {
         stage('docker image build'){
             steps{
                   script{
-                      docker_image_creation('react_test_app',"v1","avisharma82")    
+                      docker_image_creation("avisharma82","react_test_app","v1")    
                   }
             }
         }
