@@ -61,7 +61,7 @@ pipeline {
 
     post{
         success{
-            build job: ''
+            build job: 'React_project_CD_pipeline'
             parameters: [
                 //string(name: 'DEPLOY_ENV', value: 'prod'),
                 string(name: 'DOCKER_IMAGE', value: "${IMAGE_Full_name}"),
