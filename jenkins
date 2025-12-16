@@ -58,4 +58,15 @@ pipeline {
             }
         }
     }
+
+    post{
+        success{
+            build job: ''
+            parameters: [
+                //string(name: 'DEPLOY_ENV', value: 'prod'),
+                string(name: 'DOCKER_IMAGE', value: "${IMAGE_Full_name}"),
+                string(name: 'APP_VERSION', value: "${GIT_SHA}")
+            ]
+        }
+    }
 }
