@@ -2,50 +2,65 @@
 pipeline {
     agent any
 
-    environment{
-        Docker_username = "avisharma82"
-        Docker_image_name = "react_test_app"
+    environment {
+        DOCKER_USERNAME = "avisharma82"
+        DOCKER_IMAGE_NAME = "react_test_app"
     }
 
-    stages{
-        stage('code pull'){
-            steps{
-                script{
-                    git_checkout("https://github.com/avinash-sharma-121/react-testing-with-jenkins.git","main")
+    stages {
+
+        stage('Code Pull') {
+            steps {
+                script {
+                    git_checkout(
+                        "https://github.com/avinash-sharma-121/react-testing-with-jenkins.git",
+                        "main"
+                    )
                 }
             }
         }
 
-        stage('generate image tag'){
-            steps{
-                script{
-                    GIT_SHA = sh(
+        stage('Generate Image Tag') {
+            steps {
+                script {
+                    env.GIT_SHA = sh(
                         script: "git rev-parse --short HEAD",
                         returnStdout: true
                     ).trim()
-                    echo "GIT SHA is ${GIT_SHA}"
-                    IMAGE_Full_name = "${Docker_username}/${Docker_image_name}:${GIT_SHA}"
-                    echo "Docker IMAGE full name is ${IMAGE_Full_name}"
+
+                    env.IMAGE_Full_name = "${DOCKER_USERNAME}/${DOCKER_IMAGE_NAME}:${env.GIT_SHA}"
+
+                    echo "GIT SHA: ${env.GIT_SHA}"
+                    echo "IMAGE: ${env.IMAGE_Full_name}"
                 }
             }
         }
 
-        stage('docker image build'){
-            steps{
-                  script{
-                      docker_image_creation(Docker_username,Docker_image_name,GIT_SHA)    
-                  }
+        stage('Docker Image Build') {
+            steps {
+                script {
+                    docker_image_creation(
+                        DOCKER_USERNAME,
+                        DOCKER_IMAGE_NAME,
+                        env.GIT_SHA
+                    )
+                }
             }
         }
 
-        stage('image push to dockerhub'){
-            steps{
-                  script{
-                      push_img_to_dockerHub(Docker_username,Docker_image_name,GIT_SHA)
-                  }
+        stage('Push Image to DockerHub') {
+            steps {
+                script {
+                    push_img_to_dockerHub(
+                        DOCKER_USERNAME,
+                        DOCKER_IMAGE_NAME,
+                        env.GIT_SHA
+                    )
                 }
+            }
         }
-        //comented for CD pipeline trigger
+
+       //comented for CD pipeline trigger
        /* stage('code deploy'){
             steps{
                 script{
@@ -58,16 +73,16 @@ pipeline {
                 }
             }
         } */
+
     }
 
-    post{
-        success{
+    post {
+        success {
             build job: 'React_project_CD_pipeline',
-            parameters: [
-                //string(name: 'DEPLOY_ENV', value: 'prod'),
-                string(name: 'DOCKER_IMAGE', value: IMAGE_Full_name),
-                string(name: 'APP_VERSION', value: GIT_SHA)
-            ]
+                  parameters: [
+                      string(name: 'DOCKER_IMAGE', value: env.IMAGE_Full_name),
+                      string(name: 'APP_VERSION', value: env.GIT_SHA)
+                  ]
         }
     }
 }
