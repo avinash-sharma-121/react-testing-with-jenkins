@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   react-app:
-    image: "avisharma82/react_test_app:v2"
+    image: "${Docker_Image}"
     container_name: react-app
     ports:
       - "3002:3000"

@@ -1,6 +1,12 @@
 @Library("shared") _
 pipeline {
     agent any
+
+    environment{
+        Docker_username = "avisharma82"
+        Docker_image_name = "react_test_app"
+    }
+
     stages{
         stage('code pull'){
             steps{
@@ -10,10 +16,24 @@ pipeline {
             }
         }
 
+        stage('generate image tag'){
+            steps{
+                script{
+                    GIT_SHA = sh(
+                        script: "git rev-parse --short HEAD",
+                        returnStdout: true
+                    ).trim()
+                    echo "GIT SHA is ${GIT_SHA}"
+                    IMAGE_Full_name = "${Docker_username}/${Docker_image_name}:${GIT_SHA}"
+                    echo "Docker IMAGE full name is ${IMAGE_Full_name}"
+                }
+            }
+        }
+
         stage('docker image build'){
             steps{
                   script{
-                      docker_image_creation("avisharma82","react_test_app","v2")    
+                      docker_image_creation(Docker_username,Docker_image_name,GIT_SHA)    
                   }
             }
         }
@@ -21,15 +41,20 @@ pipeline {
         stage('image push to dockerhub'){
             steps{
                   script{
-                      push_img_to_dockerHub("avisharma82","react_test_app","v2")
+                      push_img_to_dockerHub(Docker_username,Docker_image_name,GIT_SHA)
                   }
                 }
         }
         stage('code deploy'){
             steps{
+                script{
                 echo "code deploy with docker"
-                /*sh "docker run --name react-app -d -p 3001:3000 avisharma82/react_test_app"*/
-                sh "docker compose up -d"
+                sh """
+                export Docker_Image=${IMAGE_Full_name}
+                docker-compose down
+                docker-compose up -d
+                """
+                }
             }
         }
     }
