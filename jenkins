@@ -64,8 +64,8 @@ pipeline {
             build job: 'React_project_CD_pipeline'
             parameters: [
                 //string(name: 'DEPLOY_ENV', value: 'prod'),
-                string(name: 'DOCKER_IMAGE', value: "${IMAGE_Full_name}"),
-                string(name: 'APP_VERSION', value: "${GIT_SHA}")
+                string(name: 'DOCKER_IMAGE', value: IMAGE_Full_name),
+                string(name: 'APP_VERSION', value: GIT_SHA)
             ]
         }
     }
