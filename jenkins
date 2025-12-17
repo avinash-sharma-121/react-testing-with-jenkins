@@ -60,22 +60,22 @@ pipeline {
             }
         }
 
-       //comented for CD pipeline trigger
+/*       //comented for CD pipeline trigger
         stage('code deploy'){
             steps{
                 script{
                 echo "code deploy with docker"
                 sh """
-                export Docker_Image=${IMAGE_Full_name}
+                export Docker_Image=${env.IMAGE_Full_name}
                 docker-compose down
                 docker-compose up -d
                 """
                 }
             }
         } 
-
+*/
     }
-/*
+
     post {
         success {
         echo "POST CHECK → GIT_SHA = '${env.GIT_SHA}'"
@@ -85,10 +85,10 @@ pipeline {
                   parameters: [
                       //string(name: 'DOCKER_IMAGE', value: env.IMAGE_Full_name),
                       //string(name: 'APP_VERSION', value: env.GIT_SHA)
-                      string(name: 'DOCKER_IMAGE', value: 'testing12345'),
-                      string(name: 'APP_VERSION', value: 'tagvalue12345')
+                      string(name: 'DOCKER_IMAGE', value: env.IMAGE_Full_name),
+                      string(name: 'APP_VERSION', value: env.GIT_SHA)
                   ]
         }
     }
-    */
+    
 }
