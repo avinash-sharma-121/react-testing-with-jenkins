@@ -36,7 +36,7 @@ pipeline {
             }
         }
 
-       /* stage('Docker Image Build') {
+        stage('Docker Image Build') {
             steps {
                 script {
                     docker_image_creation(
@@ -59,9 +59,9 @@ pipeline {
                 }
             }
         }
-*/
+
        //comented for CD pipeline trigger
-       /* stage('code deploy'){
+        stage('code deploy'){
             steps{
                 script{
                 echo "code deploy with docker"
@@ -72,10 +72,10 @@ pipeline {
                 """
                 }
             }
-        } */
+        } 
 
     }
-
+/*
     post {
         success {
         echo "POST CHECK → GIT_SHA = '${env.GIT_SHA}'"
@@ -90,4 +90,5 @@ pipeline {
                   ]
         }
     }
+    */
 }
