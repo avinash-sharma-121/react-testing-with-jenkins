@@ -19,20 +19,19 @@ pipeline {
             steps {
                 echo "Deploying image: ${params.DOCKER_IMAGE}"
                 echo "Version: ${params.APP_VERSION}"
-
-                sh '''
-                    kubectl get nodes
-                    sed 's|IMAGE_PLACEHOLDER|${params.DOCKER_IMAGE}|g' k8s/deployment.yml | kubectl apply -f -
-                    kubectl apply -f k8s/service.yml
-                    kubectl get pods -n portfolio
-                    '''
-
-        //        sh '''
-        //          sed 's|IMAGE_PLACEHOLDER|${params.DOCKER_IMAGE}|g' k8s/deployment.yaml | kubectl apply -f - //kubectl apply -f k8s/service.yaml
-        //          kubectl get nodes
-        //        '''
-
+                sh "kubectl get nodes"
+                sh "sed 's|IMAGE_PLACEHOLDER|${params.DOCKER_IMAGE}|g' k8s/deployment.yml | kubectl apply -f -"
+                sh "kubectl apply -f k8s/service.yml"
+                sh "kubectl get pods -n portfolio"
             }
+        }
+    }
+    post {
+        success {
+            echo "Deployment to Minikube successful!"
+        }
+        failure {
+            echo "Deployment to Minikube failed."
         }
     }
 }
