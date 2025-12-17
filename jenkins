@@ -85,8 +85,8 @@ pipeline {
                   parameters: [
                       //string(name: 'DOCKER_IMAGE', value: env.IMAGE_Full_name),
                       //string(name: 'APP_VERSION', value: env.GIT_SHA)
-                      string(name: 'DOCKER_IMAGE', value: env.IMAGE_Full_name),
-                      string(name: 'APP_VERSION', value: env.GIT_SHA)
+                      string(name: 'DOCKER_IMAGE', value: "${env.IMAGE_Full_name}"),
+                      string(name: 'APP_VERSION', value: "${env.GIT_SHA}")
                   ],
         wait: true,      // Set to false to trigger and move on without waiting
         propagate: true  // If true, the CI job fails if the CD job fails
