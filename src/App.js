@@ -1,16 +1,26 @@
 import './App.css';
+import profileImg from "./Assets/Avinash_Kumar_Sharma.jpg";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <h1>Avinash Kumar Sharma</h1>
-        <p>DevOps Engineer</p>
-      </header>
+<header className="App-header">
+  <img
+    src={profileImg}
+    alt="Avinash Kumar Sharma"
+    className="profile-image"
+  />
+
+  <div className="profile-details">
+    <h1>Avinash Kumar Sharma</h1>
+    <p>DevOps Engineer</p>
+  </div>
+</header>
+
       <main className="container">
         <section id="about">
           <h2>About Me</h2>
-          <p>Hello! I'm a passionate DevOps Engineer with experience in automating deployments, managing cloud infrastructure, and ensuring scalable CI/CD pipelines. I love leveraging technology to streamline development processes and improve system reliability.</p>
+          <p>AWS Certified DevOps Engineer with 3.8+ years of experience in AWS cloud, Linux Administration, CI/CD, Docker, Kubernetes, Terraform, and automation using Python and Bash. Strong background in building secure, scalable, and automated infrastructure using IaC and DevOps best practices. Experienced in monitoring, patching, and cloud operations. Focused on improving reliability and delivering cloud-native solutions.</p>
         </section>
         <section id="skills">
           <h2>Skills</h2>
@@ -20,10 +30,12 @@ function App() {
             <li>Kubernetes</li>
             <li>Jenkins</li>
             <li>Terraform</li>
+            <li>Ansible</li>
             <li>Python</li>
             <li>Linux</li>
             <li>Git</li>
           </ul>
+        </section>
         <section id="experience">
           <h2>Experience</h2>
           <div className="experience-item">
@@ -37,6 +49,7 @@ function App() {
             <p>Managed PHP and JavaScript projects, implemented responsive UIs, and collaborated with cross-functional teams.</p>
           </div>
         </section>
+        <section id="projects">
           <h2>Projects</h2>
           <div className="project">
             <h3>CI/CD Pipeline Automation</h3>
@@ -49,11 +62,11 @@ function App() {
         </section>
         <section id="certificates">
           <h2>Certificates</h2>
-          <div className="certificate">
+          <div className="project">
             <h3>AWS Solution Architect</h3>
-            <p>I have completed this certificate on nov - 2024</p>
+            <p>I have completed this certificate on Nov - 2024</p>
           </div>
-          <div className="certificate">
+          <div className="project">
             <h3>AWS Developer Associate</h3>
             <p>I have completed this certificate on March - 2025</p>
           </div>
@@ -64,7 +77,7 @@ function App() {
           <h2>Contact</h2>
           <p>Email: kumaravinashsharma82@gmail.com</p>
           <p>Phone: +91 9060071846</p>
-          <p>LinkedIn: <a href="https://linkedin.com/in/avinashksharma" className="App-link">linkedin.com/in/avinashksharma</a></p>
+          <p>LinkedIn: <a href="https://linkedin.com/in/avinashksharma" target="_blank" className="App-link">linkedin.com/in/avinashksharma</a></p>
         </section>
       </main>
       <footer>

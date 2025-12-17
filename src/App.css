@@ -8,12 +8,46 @@
 }
 
 .App-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  padding: 40px;
   background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
   color: white;
   text-align: center;
   padding: 3rem 2rem;
   margin: 0;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Image */
+.profile-image {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-top: 5px;
+}
+
+/* Text */
+.profile-details h1 {
+  font-size: 3rem;
+  margin: 0;
+}
+
+.profile-details p {
+  font-size: 1.5rem;
+  margin-top: 10px;
+  color: #aaa;
+}
+
+/* 📱 Mobile view */
+@media (max-width: 768px) {
+  .App-header {
+    flex-direction: column;
+    text-align: center;
+  }
 }
 
 .App-header h1 {
@@ -35,6 +69,15 @@
   display: grid;
   grid-template-columns: 1fr;
   gap: 2rem;
+}
+
+.profile-image {
+  margin-top: 5px;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  /*border: 1px solid #fff;   /* optional */
 }
 
 section {
@@ -102,6 +145,7 @@ h2 {
   margin: 0.25rem 0;
   color: #555;
 }
+
 
 footer {
   background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
