@@ -14,6 +14,7 @@ function App() {
   <div className="profile-details">
     <h1>Avinash Sharma</h1>
     <p>DevSecOps Engineer</p>
+    
   </div>
 </header>
 
