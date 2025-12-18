@@ -12,9 +12,9 @@ function App() {
   />
 
   <div className="profile-details">
-    <h1>Avinash Sharma</h1>
-    <p>DevSecOps Engineer</p>
-    
+    <h1>Avinash Kumar Sharma</h1>
+    <p>Cloud + DevOps Engineer</p>
+
   </div>
 </header>
 
