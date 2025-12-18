@@ -12,7 +12,7 @@ function App() {
   />
 
   <div className="profile-details">
-    <h1>Avi Kumar Sharma</h1>
+    <h1>Avinash Sharma</h1>
     <p>DevOps Engineer</p>
   </div>
 </header>
