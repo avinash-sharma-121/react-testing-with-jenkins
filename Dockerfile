@@ -94,9 +94,9 @@ RUN npm run build
 
 # Stage 2
 
-#FROM nginx:alpine
+FROM nginx:alpine
 
-FROM gcr.io/distroless/nginx
+#FROM gcr.io/distroless/nginx
 
 COPY --from=build /app/build /usr/share/nginx/html
 
