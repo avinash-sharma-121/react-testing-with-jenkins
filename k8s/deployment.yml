@@ -6,7 +6,7 @@ metadata:
   labels:
     app: portfolio
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       app: portfolio
@@ -20,3 +20,8 @@ spec:
         image: IMAGE_PLACEHOLDER
         ports:
         - containerPort: 80
+      tolerations:
+      - key: "dev"
+        operator: "Equal"
+        value: "true"
+        effect: "NoSchedule"
