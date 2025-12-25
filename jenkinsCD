@@ -20,6 +20,7 @@ pipeline {
                 echo "Deploying image: ${params.DOCKER_IMAGE}"
                 echo "Version: ${params.APP_VERSION}"
                 sh "kubectl get nodes"
+                sh "kubectl create namespace portfolio || echo 'Namespace portfolio already exists'"
                 sh "sed 's|IMAGE_PLACEHOLDER|${params.DOCKER_IMAGE}|g' k8s/deployment.yml | kubectl apply -f -"
                 sh "kubectl apply -f k8s/service.yml"
                 sh "kubectl get pods -n portfolio"
