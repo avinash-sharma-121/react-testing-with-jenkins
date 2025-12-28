@@ -20,6 +20,17 @@ pipeline {
             }
         }
 
+        stage('Code vulnerability scan with trivy'){
+            steps{
+                script{
+                    echo "Scanning code with trivy scanner"
+                    sh "ls -ltr"
+                    sh  "trivy fs --severity LOW,HIGH,CRITICAL ."
+                    echo "Trivy scan completed"
+                }
+            }
+        }
+
         stage('Generate Image Tag') {
             steps {
                 script {
