@@ -23,10 +23,7 @@ pipeline {
         stage('Code vulnerability scan with trivy'){
             steps{
                 script{
-                    echo "Scanning code with trivy scanner"
-                    sh "ls -ltr"
-                    sh  "trivy fs --severity LOW,HIGH,CRITICAL ."
-                    echo "Trivy scan completed"
+                    trivy_file_system_scan()
                 }
             }
         }
@@ -62,10 +59,7 @@ pipeline {
         stage ('trivy scaner report'){
             steps{
                 script {
-                    echo "Scanning image with trivy scanner"
-                    sh  "trivy --version"
-                    sh  "trivy image --severity LOW,HIGH,CRITICAL ${env.IMAGE_Full_name}"
-                    echo "Trivy scan completed"
+                    trivy_docker_scaner_report(env.IMAGE_Full_name)
                 }
             }
         }
@@ -73,17 +67,7 @@ pipeline {
         stage ('trivy scaner pass/fail'){
             steps{
                 script {
-                    echo "Scanning image with trivy scanner"
-                    echo "Image to scan: ${env.IMAGE_Full_name}"
-                    try{
-                    sh  "trivy --version"
-                    sh  "trivy image --exit-code 1 --severity CRITICAL ${env.IMAGE_Full_name}"
-                    echo "Trivy scan pass all vulnerabilities"
-                    }
-                    catch (err){
-                        echo "Trivy scan failed due to CRITICAL vulnerabilities"
-                        error("Security gate failed due to Trivy scan")
-                    }
+                    trivy_docker_scaner_pass_fail(env.IMAGE_Full_name)
                 }
             }
         }
