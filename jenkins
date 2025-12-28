@@ -48,6 +48,21 @@ pipeline {
             }
         }
 
+        stage ('trivy scaner'){
+            steps{
+                script {
+                    echo "Scanning image with trivy scanner"
+                    trivy --version
+                    sh  
+                    '''
+                    trivy image --severity HIGH, CRITICAL ${env.IMAGE_Full_name}
+                    '''
+                    echo "Trivy scan completed"
+                    
+                }
+            }
+        }
+
         stage('Push Image to DockerHub') {
             steps {
                 script {
