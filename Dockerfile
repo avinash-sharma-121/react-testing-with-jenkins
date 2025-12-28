@@ -94,7 +94,10 @@ RUN npm run build
 
 # Stage 2
 
-FROM nginx:alpine
+#FROM nginx:alpine
+
+#vulnerability testing with old nginx image with trivy
+FROM nginx:1.22.1-alpine
 
 #FROM gcr.io/distroless/nginx
 
