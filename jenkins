@@ -52,13 +52,9 @@ pipeline {
             steps{
                 script {
                     echo "Scanning image with trivy scanner"
-                    sh  
-                    '''
-                    trivy --version
-                    trivy image --severity HIGH, CRITICAL ${env.IMAGE_Full_name}
-                    '''
+                    sh  "trivy --version"
+                    sh  "trivy image --severity HIGH, CRITICAL ${env.IMAGE_Full_name}"
                     echo "Trivy scan completed"
-                    
                 }
             }
         }
