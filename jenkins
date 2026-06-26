@@ -4,7 +4,7 @@ pipeline {
 
     environment {
         DOCKER_USERNAME = "avisharma82"
-        DOCKER_IMAGE_NAME = "react_test_app"
+        DOCKER_IMAGE_NAME = "portfolio"
     }
 
     stages {
